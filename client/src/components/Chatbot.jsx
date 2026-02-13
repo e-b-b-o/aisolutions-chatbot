@@ -36,13 +36,11 @@ const Chatbot = () => {
         try {
             const history = await chatService.getChatHistory();
             if (history && history.length > 0) {
-                const formattedMessages = history.flatMap(chat => 
-                    chat.messages.map(msg => ({
-                        role: msg.role,
-                        content: msg.content,
-                        timestamp: msg.timestamp
-                    }))
-                );
+                const formattedMessages = history.map(msg => ({
+                    role: msg.role,
+                    content: msg.content,
+                    timestamp: msg.timestamp
+                }));
                 setMessages(formattedMessages);
             }
         } catch (error) {
