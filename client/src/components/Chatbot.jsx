@@ -147,7 +147,7 @@ const Chatbot = () => {
                                 <Bot size={18} />
                             </div>
                             <div>
-                                <div style={{ fontSize: '0.9rem', fontWeight: '800', letterSpacing: '0.05em' }}>AI ASSISTANT</div>
+                                <div style={{ fontSize: '0.9rem', fontWeight: '800', letterSpacing: '0.05em' }}>XTRACT & CHAT</div>
                                 <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: '600' }}>ONLINE</div>
                             </div>
                         </div>

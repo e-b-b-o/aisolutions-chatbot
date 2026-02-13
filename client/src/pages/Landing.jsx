@@ -53,7 +53,7 @@ const Landing = () => {
                   alignItems: 'center' 
                 }}>
                     <h1 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '800', letterSpacing: '-0.05em' }} onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="pointer">
-                        AI SOLUTIONS
+                        XTRACT & CHAT
                     </h1>
                     <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
                         {navItems.map(item => (
@@ -138,9 +138,9 @@ const Landing = () => {
                           width: '100%'
                         }}>
                             {[
-                              { icon: <Layers size={24} />, title: "RAG Pipeline", desc: "Advanced vector retrieval ensures your chatbot only uses your provided documentation." },
+                              { icon: <Layers size={24} />, title: "RAG Pipeline", desc: "Advanced vector retrieval ensures responses are grounded only in your provided documentation." },
                               { icon: <Shield size={24} />, title: "Data Security", desc: "Enterprise-grade encryption for all uploaded documents and conversation logs." },
-                              { icon: <Bot size={24} />, title: "Context Aware", desc: "Our chatbot maintains conversation history for fluid, human-like interactions." },
+                              { icon: <Bot size={24} />, title: "Context Aware", desc: "Xtract & Chat maintains conversation history for fluid, human-like interactions." },
                               { icon: <Users size={24} />, title: "Multi-Admin", desc: "Scale your knowledge management across entire teams with granular controls." }
                             ].map((feature, i) => (
                               <div key={i} className="card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -223,9 +223,9 @@ const Landing = () => {
               padding: '4rem 2rem' 
             }}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 0 }}>
-                    <div style={{ fontSize: '1rem', fontWeight: '800' }}>AI SOLUTIONS</div>
+                    <div style={{ fontSize: '1rem', fontWeight: '800' }}>XTRACT & CHAT</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                        &copy; 2025 ALL RIGHTS RESERVED.
+                        &copy; 2026 ALL RIGHTS RESERVED.
                     </div>
                 </div>
             </footer>
