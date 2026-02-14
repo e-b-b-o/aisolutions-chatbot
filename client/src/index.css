@@ -127,11 +127,14 @@ a:hover {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    width: 100%;
-    box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Scrollbar */

@@ -275,8 +275,8 @@ const Admin = () => {
             <ProcessingOverlay progress={progress} stage={stage} visible={showOverlay} />
 
             <div className="container" style={{ maxWidth: '1000px' }}>
-                <header style={{ marginBottom: '4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
+                                <header style={{ marginBottom: '4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div>
                       <button onClick={() => navigate('/')} className="btn" style={{ marginBottom: '1.5rem', padding: '0.4rem 0.8rem', fontSize: '0.7rem' }}>
                           <ArrowLeft size={14} style={{ marginRight: '0.5rem' }} /> Back
                       </button>

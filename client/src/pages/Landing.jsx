@@ -38,16 +38,19 @@ const Landing = () => {
             <header style={{ 
               position: 'fixed', 
               top: 0, 
-              width: '100%', 
+              width: '100vw', 
+              left: 0,
               backgroundColor: 'rgba(0,0,0,0.8)', 
               backdropFilter: 'blur(10px)', 
               zIndex: 1000,
-              borderBottom: '1px solid var(--border)' 
+              borderBottom: '1px solid var(--border)',
+              padding: 0,
             }}>
                 <div style={{ 
-                  maxWidth: '1200px', 
-                  margin: '0 auto', 
-                  padding: '1rem 2rem', 
+                  width: '100vw',
+                  margin: 0,
+                  padding: '1rem 2.3rem',
+                  boxSizing: 'border-box',
                   display: 'flex', 
                   justifyContent: 'space-between', 
                   alignItems: 'center' 
@@ -220,14 +223,17 @@ const Landing = () => {
             <footer style={{ 
               backgroundColor: 'var(--background)', 
               borderTop: '1px solid var(--border)', 
-              padding: '4rem 2rem' 
+              padding: '2rem 0',
+              width: '100vw',
+              left: 0,
+              position: 'relative',
             }}>
-                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 0 }}>
-                    <div style={{ fontSize: '1rem', fontWeight: '800' }}>XTRACT & CHAT</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                        &copy; 2026 ALL RIGHTS RESERVED.
-                    </div>
+                <div style={{ width: '100vw', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: 0, padding: '0 2.3rem', boxSizing: 'border-box' }}>
+                <div style={{ fontSize: '1rem', fontWeight: '800' }}>XTRACT & CHAT</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                  &copy; 2026 ALL RIGHTS RESERVED.
                 </div>
+              </div>
             </footer>
 
             {/* Chatbot Widget */}
