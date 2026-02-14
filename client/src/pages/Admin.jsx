@@ -310,6 +310,7 @@ const Admin = () => {
                                     className="form-input"
                                     style={{ padding: '0.6rem' }}
                                 />
+                                <p className="hint-text">MAX 10MB. ONLY .PDF AND .TXT ALLOWED.</p>
                             </div>
                             <button type="submit" disabled={loading || !file} className="btn btn-primary" style={{ width: '100%' }}>
                                 {loading ? <Loader2 className="animate-spin" size={16} /> : 'Process File'}

@@ -61,6 +61,9 @@ const Register = () => {
                             placeholder="••••••••"
                             required
                         />
+                        <p className="hint-text">
+                            MIN 8 CHARACTERS, 1 UPPERCASE, 1 NUMBER.
+                        </p>
                     </div>
                     <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '0.5rem' }}>Create Account</button>
                     <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>

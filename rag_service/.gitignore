@@ -43,3 +43,7 @@ Desktop.ini
 htmlcov/
 .coverage
 coverage.xml
+
+# Environment variables
+.env
+.env.*

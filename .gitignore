@@ -7,3 +7,7 @@ Desktop.ini
 .vscode/
 .idea/
 
+# Environment variables
+.env
+.env.*
+

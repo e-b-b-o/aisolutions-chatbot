@@ -23,12 +23,45 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage });
+const upload = multer({ 
+    storage,
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = ['application/pdf', 'text/plain'];
+        const ext = path.extname(file.originalname).toLowerCase();
+        
+        if (allowedTypes.includes(file.mimetype) || ext === '.pdf' || ext === '.txt') {
+            cb(null, true);
+        } else {
+            cb(new Error('Only PDF and TXT files are allowed'), false);
+        }
+    }
+});
+
+// Middleware to handle Multer errors
+const handleMulterError = (err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            return res.status(400).json({ message: 'File too large. Max size is 10MB.' });
+        }
+        return res.status(400).json({ message: err.message });
+    } else if (err) {
+        return res.status(400).json({ message: err.message });
+    }
+    next();
+};
 
 // @desc    Upload document
 // @route   POST /api/admin/upload
 // @access  Private/Admin
-router.post('/upload', protect, admin, upload.single('file'), async (req, res) => {
+router.post('/upload', protect, admin, (req, res, next) => {
+    upload.single('file')(req, res, (err) => {
+        if (err) {
+            return handleMulterError(err, req, res, next);
+        }
+        next();
+    });
+}, async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'No file uploaded' });
     }
@@ -182,7 +215,7 @@ router.delete('/documents/:id', protect, admin, async (req, res) => {
         // Remove from DB
         await Document.deleteOne({ _id: doc._id });
 
-        // Optional: Reset RAG for consistency
+        //  Reset RAG for consistency
         try {
              const pythonServiceUrl = process.env.PYTHON_SERVICE_URL || 'http://localhost:5001';
              await fetch(`${pythonServiceUrl}/reset`, { method: 'POST' });

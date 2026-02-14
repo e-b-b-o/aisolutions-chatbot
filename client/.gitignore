@@ -38,3 +38,11 @@ Thumbs.db
 
 # OS files
 Desktop.ini
+
+# Environment variables
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

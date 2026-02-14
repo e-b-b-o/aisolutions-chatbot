@@ -9,11 +9,18 @@ const generateToken = (id) => {
   });
 };
 
-// @desc    Register a new user
 // @route   POST /api/auth/register
 // @access  Public
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
+
+  // Password validation
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({ 
+      message: "Password must be at least 8 characters long and contain at least one uppercase letter and one number" 
+    });
+  }
 
   try {
     const userExists = await User.findOne({ email });
