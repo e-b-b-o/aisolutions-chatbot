@@ -1,19 +1,26 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import StudyKit from './pages/StudyKit';
 import Landing from './pages/Landing';
-import Admin from './pages/Admin';
 import authService from './services/authService';
 
-const PrivateRoute = ({ children, adminOnly = false }) => {
+const PrivateRoute = ({ children }) => {
     const user = authService.getCurrentUser();
     
     if (!user) {
         return <Navigate to="/login" />;
     }
     
-    if (adminOnly && !user.isAdmin) {
-        return <Navigate to="/" />;
+    return children;
+};
+
+const PublicRoute = ({ children }) => {
+    const user = authService.getCurrentUser();
+    
+    if (user) {
+        return <Navigate to="/dashboard" />;
     }
     
     return children;
@@ -23,21 +30,22 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
         <Route 
-          path="/" 
+          path="/dashboard" 
           element={
             <PrivateRoute>
-              <Landing />
+              <Dashboard />
             </PrivateRoute>
           } 
         />
         <Route 
-          path="/admin" 
+          path="/study-kit/:id" 
           element={
-            <PrivateRoute adminOnly={true}>
-              <Admin />
+            <PrivateRoute>
+              <StudyKit />
             </PrivateRoute>
           } 
         />
