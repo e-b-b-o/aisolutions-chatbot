@@ -329,6 +329,34 @@ a::before, a::after {
   color: var(--purple-accent);
 }
 
+/* Ensure CTA button inside nav keeps its own styles */
+.nav-links .btn.btn-primary {
+  color: white !important;
+  background: var(--cta-gradient) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.35);
+}
+
+/* Nav auth link (Log In text) */
+.nav-link-auth {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none !important;
+  border: none !important;
+  background: none !important;
+  transition: color 0.2s ease;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nav-link-auth:hover {
+  color: var(--purple-accent);
+}
+
 /* ============================================================
    BUTTON COMPONENTS
    ============================================================ */
@@ -666,6 +694,7 @@ a::before, a::after {
 }
 
 .step-connector {
+  display: none;
   flex: 1;
   height: 2px;
   background: linear-gradient(90deg, var(--purple-light), var(--soft-lavender));
@@ -676,6 +705,9 @@ a::before, a::after {
 }
 
 @media (min-width: 1024px) {
+  .step-connector {
+    display: block;
+  }
   .steps-container {
     flex-direction: row;
     align-items: flex-start;
@@ -905,6 +937,21 @@ a::before, a::after {
 
 .footer-col a:hover {
   color: var(--purple-accent);
+}
+
+/* Footer links used with React <Link> */
+.footer-link {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  border: none !important;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--purple-accent) !important;
 }
 
 .footer-divider {

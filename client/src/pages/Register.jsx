@@ -16,7 +16,7 @@ const Register = () => {
 
         const usernameRegex = /^[a-zA-Z0-9_\s]{3,20}$/;
         if (!username || !usernameRegex.test(username)) {
-            return setError('Username must be 3-20 characters long.');
+            return setError('Username must be 3–20 characters long.');
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,109 +33,50 @@ const Register = () => {
             await authService.register({ username, email, password });
             navigate('/dashboard');
         } catch (err) {
-            setError(err.response?.data?.message || 'Registration failed');
+            setError(err.response?.data?.message || 'Registration failed.');
         }
     };
 
     return (
-        <div className="min-h-screen bg-section flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <button 
-                    onClick={() => navigate('/')}
-                    className="flex items-center text-sm font-medium text-secondary hover:text-accent mb-8 transition-colors px-4 py-2 rounded-md hover:bg-gray-100 w-max"
-                >
-                    <ArrowLeft size={16} className="mr-2" /> Go back to landing page
-                </button>
-                <h2 className="text-center text-3xl font-bold text-primary tracking-tight">
-                    Create a new account
-                </h2>
-            </div>
+        <div className="auth-page">
+            <div className="auth-container">
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-main py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-light">
+                <button onClick={() => navigate('/')} className="auth-back-link">
+                    <ArrowLeft size={15} /> Back to home
+                </button>
+
+                <h2 className="auth-title">Create a new account</h2>
+
+                <div className="auth-card">
                     {error && (
-                        <div className="mb-4 bg-red-50 p-4 rounded-md">
-                            <p className="text-sm text-red-700">{error}</p>
+                        <div style={{
+                            marginBottom: '1.25rem', background: '#fef2f2',
+                            border: '1px solid #fecaca', borderRadius: '0.5rem',
+                            padding: '0.875rem 1rem'
+                        }}>
+                            <p style={{ fontSize: '0.875rem', color: '#b91c1c' }}>{error}</p>
                         </div>
                     )}
-                    
-                    <form className="space-y-6" onSubmit={handleSubmit}>
-                        <div>
-                            <label className="label">
-                                Username
-                            </label>
-                            <div className="mt-1">
-                                <input
-                                    type="text"
-                                    required
-                                    className="input-field"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
-                            </div>
-                        </div>
 
-                        <div>
-                            <label className="label">
-                                Email address
-                            </label>
-                            <div className="mt-1">
-                                <input
-                                    type="email"
-                                    required
-                                    className="input-field"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
+                    <form className="auth-form" onSubmit={handleSubmit}>
+                        <div className="auth-form-group">
+                            <label className="label">Username</label>
+                            <input type="text" required className="input-field" placeholder="e.g. john_doe" value={username} onChange={(e) => setUsername(e.target.value)} />
                         </div>
-
-                        <div>
-                            <label className="label">
-                                Password
-                            </label>
-                            <div className="mt-1">
-                                <input
-                                    type="password"
-                                    required
-                                    className="input-field"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                                <p className="mt-2 text-xs text-secondary">
-                                    Min 8 characters, 1 uppercase, 1 number.
-                                </p>
-                            </div>
+                        <div className="auth-form-group">
+                            <label className="label">Email address</label>
+                            <input type="email" required className="input-field" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
-
-                        <div>
-                            <button
-                                type="submit"
-                                className="w-full btn btn-primary flex justify-center py-2 px-4 shadow-sm"
-                            >
-                                Sign up
-                            </button>
+                        <div className="auth-form-group">
+                            <label className="label">Password</label>
+                            <input type="password" required className="input-field" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>Min 8 characters, 1 uppercase, 1 number.</p>
                         </div>
+                        <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '0.5rem', padding: '0.875rem' }}>Create Account</button>
                     </form>
 
-                    <div className="mt-6">
-                        <div className="relative">
-                            <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-light" />
-                            </div>
-                            <div className="relative flex justify-center text-sm">
-                                <span className="px-2 bg-main text-secondary">
-                                    Already have an account?
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className="mt-6 text-center">
-                            <Link to="/login" className="font-medium text-accent hover:text-indigo-500">
-                                Sign in instead
-                            </Link>
-                        </div>
-                    </div>
+                    <div className="auth-divider"><span>Already have an account?</span></div>
+                    <div className="auth-footer-link"><Link to="/login">Sign in instead</Link></div>
                 </div>
             </div>
         </div>
