@@ -7,3 +7,5 @@ flask
 flask-cors
 pypdf
 gunicorn
+onnxruntime==1.16.2
+python-docx

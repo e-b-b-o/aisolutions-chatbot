@@ -12,7 +12,12 @@ const documentSchema = new mongoose.Schema({
         question: { type: String },
         options: [{ type: String }],
         correctAnswer: { type: String }
-    }]
+    }],
+    flashcards: [{
+        front: { type: String },
+        back: { type: String }
+    }],
+    notes: { type: String }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Document', documentSchema);

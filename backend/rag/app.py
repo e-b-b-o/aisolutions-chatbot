@@ -2,7 +2,10 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-from rag import ingest_document, generate_summary, generate_quiz, delete_document_vectors
+from rag import (
+    ingest_document, generate_summary, generate_quiz, delete_document_vectors,
+    generate_flashcards, generate_notes, chat_with_document
+)
 
 load_dotenv()
 
@@ -64,6 +67,58 @@ def generate_quiz_route():
 
     except Exception as e:
         print("❌ Generate Quiz Error:", str(e))
+        return jsonify({"error": "Internal RAG service error"}), 500
+
+
+@app.route('/generate-flashcards', methods=['POST'])
+def generate_flashcards_route():
+    try:
+        data = request.get_json()
+        document_id = data.get('document_id')
+
+        if not document_id:
+            return jsonify({"error": "document_id is required"}), 400
+
+        flashcards = generate_flashcards(document_id)
+        return jsonify({"flashcards": flashcards}), 200
+
+    except Exception as e:
+        print("❌ Generate Flashcards Error:", str(e))
+        return jsonify({"error": "Internal RAG service error"}), 500
+
+
+@app.route('/generate-notes', methods=['POST'])
+def generate_notes_route():
+    try:
+        data = request.get_json()
+        document_id = data.get('document_id')
+
+        if not document_id:
+            return jsonify({"error": "document_id is required"}), 400
+
+        notes = generate_notes(document_id)
+        return jsonify({"notes": notes}), 200
+
+    except Exception as e:
+        print("❌ Generate Notes Error:", str(e))
+        return jsonify({"error": "Internal RAG service error"}), 500
+
+
+@app.route('/chat', methods=['POST'])
+def chat_route():
+    try:
+        data = request.get_json()
+        document_id = data.get('document_id')
+        message = data.get('message')
+
+        if not document_id or not message:
+            return jsonify({"error": "document_id and message are required"}), 400
+
+        response = chat_with_document(document_id, message)
+        return jsonify({"response": response}), 200
+
+    except Exception as e:
+        print("❌ Chat Error:", str(e))
         return jsonify({"error": "Internal RAG service error"}), 500
 
 
